@@ -165,6 +165,7 @@ curl http://container-b:80
 ```
 
 Both succeeded — confirming that containers on the same custom bridge network can reach each other using just their container name (no IP address needed).
+
 📸 **Screenshot:** Container-to-container communication test (ping/curl success)
 > <img src="screenshots/03-network-test.png" width="600"/>
 
@@ -319,7 +320,7 @@ Also confirmed visually in the AWS Console under the `myapp` repository.
 **Step 1 — Initialize Swarm mode**
 
 ```bash
-docker swarm init --advertise-addr <manager-ip>
+docker swarm init
 ```
 
 This turns the current machine into a **Swarm Manager** node.
@@ -584,8 +585,6 @@ Both tools flagged a largely overlapping set of issues, which gave confidence in
 **Goal:** Apply production-grade hardening to the Dockerfile and image.
 
 **1. Optimize Dockerfile using layer caching**
-
-**1. Optimize Dockerfile using layer caching**
  
 Ordered instructions so things that change rarely (like installing dependencies) come **before** things that change often (like copying app code). This way, Docker can reuse cached layers and skip re-running unchanged steps on every build.
  
@@ -698,4 +697,19 @@ docker images nginx
 
 ---
 
-Connect with me as I continue this journey: **#AWSDevOpsRestartJourney**
+## Part of
+ 
+This repository is part of the **#AWSDevOpsRestartJourney** — a structured series of hands-on DevOps projects built and documented to strengthen core cloud and infrastructure skills.
+ 
+Follow the journey on [LinkedIn](https://linkedin.com/in/sinshac)
+ 
+---
+ 
+## Author
+ 
+**Sinsha C**
+ 
+[![GitHub](https://img.shields.io/badge/GitHub-sinsha--c-181717?style=flat&logo=github&logoColor=white)](https://github.com/sinsha-c)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-sinshac-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/sinshac)
+
+---
