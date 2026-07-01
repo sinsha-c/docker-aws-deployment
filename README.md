@@ -128,10 +128,10 @@ You should see `myapp-container` listed with status `Up`.
 Opened `http://localhost:8080` or `http://<public-ip-ec2>:8080`in a browser and confirmed the "Welcome to my Dockerized Web App!" message displayed correctly.
 
 📸 **Screenshot:** Container running (`docker ps` output)
-> <img src="screenshots/01-container-running.png" width="600"/>
+> <img src="screenshots/01-container-running.png" width="700"/>
 
 📸 **Screenshot:** App accessible in browser
-> <img src="screenshots/02-browser-access.png" width="600"/>
+> <img src="screenshots/02-browser-access.png" width="700"/>
 
 ---
 
@@ -167,7 +167,7 @@ curl http://container-b:80
 Both succeeded — confirming that containers on the same custom bridge network can reach each other using just their container name (no IP address needed).
 
 📸 **Screenshot:** Container-to-container communication test (ping/curl success)
-> <img src="screenshots/03-network-test.png" width="600"/>
+> <img src="screenshots/03-network-test.png" width="700"/>
 
 **Step 4 — Explore Host Network mode**
 
@@ -186,7 +186,7 @@ In host mode, the container shares the host machine's network stack directly —
 
 
 📸 **Screenshot:** Container running in Host network mode
-> <img src="screenshots/04-host-network.png" width="600"/>
+> <img src="screenshots/04-host-network.png" width="700"/>
 
 ---
 
@@ -225,7 +225,7 @@ docker exec -it myapp-storage-2 sh
 Even though the **original container was deleted**, the new container (using the same named volume) could still read `test.txt` — proving the data survived independently of the container's lifecycle.
 
 📸 **Screenshot:** Data persisting after container deletion
-> <img src="screenshots/05-volume-persistence.png" width="600"/>
+> <img src="screenshots/05-volume-persistence.png" width="700"/>
 
 **Step 4 — Create and test a Bind Mount**
 
@@ -242,7 +242,7 @@ cat ~/bind-data/container-file-bind.txt
 A bind mount maps a specific folder **on the host machine** directly into the container, so changes are visible instantly on both sides.
 
 📸 **Screenshot:** Bind mount in action
-> <img src="screenshots/06-bind-mount.png" width="600"/>
+> <img src="screenshots/06-bind-mount.png" width="700"/>
 
 **Step 5 — Compare Named Volumes vs Bind Mounts**
 
@@ -268,9 +268,9 @@ aws ecr create-repository --repository-name myapp --region <your-region>
 (Can also be done through the AWS Console under **ECR → Create repository**.)
 
 📸 **Screenshot:** ECR repository created
-> <img src="screenshots/07-ecr-repo-output.png" width="600"/>
+> <img src="screenshots/07-ecr-repo-output.png" width="700"/>
 📸 **Screenshot:** ECR repository from aws
-> <img src="screenshots/07-ecr-repo.png" width="600"/>
+> <img src="screenshots/07-ecr-repo.png" width="700"/>
 
 **Step 2 — Authenticate Docker with ECR**
 
@@ -288,7 +288,7 @@ docker tag myapp:v1 <account-id>.dkr.ecr.<your-region>.amazonaws.com/myapp:v1
 ```
 
 📸 **Screenshot:** Image successfully pushed to ECR
-> <img src="screenshots/08-tag-image.png" width="600"/>
+> <img src="screenshots/08-tag-image.png" width="700"/>
 
 ECR requires the image tag to be prefixed with the full registry URI so Docker knows where to push it.
 
@@ -304,12 +304,12 @@ docker push <account-id>.dkr.ecr.<your-region>.amazonaws.com/myapp:v1
 aws ecr describe-images --repository-name myapp --region <your-region>
 ```
 📸 **Screenshot:** Image successfully pushed status
-> <img src="screenshots/08-image-pushed.png" width="600"/>
+> <img src="screenshots/08-image-pushed.png" width="700"/>
 
 Also confirmed visually in the AWS Console under the `myapp` repository.
 
 📸 **Screenshot:** Image successfully pushed to ECR
-> <img src="screenshots/08-image-pushed-ecr.png" width="600"/>
+> <img src="screenshots/08-image-pushed-ecr.png" width="700"/>
 
 ---
 
@@ -326,7 +326,7 @@ docker swarm init
 This turns the current machine into a **Swarm Manager** node.
 
 📸 **Screenshot:** Swarm initialized successfully
-> <img src="screenshots/09-swarm-init.png" width="600"/>
+> <img src="screenshots/09-swarm-init.png" width="700"/>
 
 **Step 2 — Understand Manager vs Worker roles**
 
@@ -337,7 +337,7 @@ docker node ls
 ```
 
 📸 **Screenshot:** node list
-> <img src="screenshots/09-swarm-node-ls.png" width="600"/>
+> <img src="screenshots/09-swarm-node-ls.png" width="700"/>
 
 The * means this is the node you're currently on
 MANAGER STATUS: Leader confirms it's the manager node
@@ -365,7 +365,7 @@ docker swarm join --token SWMTKN-1-xxxxx <manager-ip>:2377
 ```
 
 📸 **Screenshot:** Swarm initialized successfully
-> <img src="screenshots/09-swarm-token.png" width="600"/>
+> <img src="screenshots/09-swarm-token.png" width="700"/>
 
 ---
 
@@ -404,10 +404,10 @@ docker service ps web-service
 This showed all 5 replicas, which node each was running on, and their current state — demonstrating how Swarm spreads load across available nodes automatically.
 
 📸 **Screenshot:** Service created and running
-> <img src="screenshots/10-service-created.png" width="600"/>
+> <img src="screenshots/10-service-created.png" width="700"/>
 
 📸 **Screenshot:** Service scaled to 5 replicas with task distribution
-> <img src="screenshots/11-service-scaled.png" width="600"/>
+> <img src="screenshots/11-service-scaled.png" width="700"/>
 
 ---
 
@@ -455,7 +455,7 @@ docker service update \
 - `--update-delay 10s` → wait 10 seconds between each replica update
 
 📸 **Screenshot:** Rolling update in progress
-> <img src="screenshots/12-rolling-update.png" width="600"/>
+> <img src="screenshots/12-rolling-update.png" width="700"/>
 
 **Step 4 — Observe the rolling update**
 
@@ -466,7 +466,7 @@ docker service ps web-service
 Watched replicas get replaced **one at a time** — old containers shut down only after new ones came up healthy, so the app stayed available throughout the update (no full outage).
 
 📸 **Screenshot:** Service status
-> <img src="screenshots/12-rolling-update-ps.png" width="600"/>
+> <img src="screenshots/12-rolling-update-ps.png" width="700"/>
 
 **Step 5 — Verify v2 is live in the browser**
  
@@ -477,7 +477,7 @@ http://<your-ec2-public-ip>:8080
 ```
  
 📸 **Screenshot:** You should now see the updated page:
-> <img src="screenshots/12-update-pagev2.png" width="600"/>
+> <img src="screenshots/12-update-pagev2.png" width="700"/>
 
 ---
 
@@ -506,7 +506,7 @@ trivy image --severity HIGH,CRITICAL myapp:v1
 This filters the (often long) results down to only the issues worth prioritizing immediately.
 
 📸 **Screenshot:** Trivy scan results (HIGH/CRITICAL findings)
-> <img src="screenshots/13-trivy-scan.png" width="600"/>
+> <img src="screenshots/13-trivy-scan.png" width="700"/>
 
 **Step 4 — Research selected CVEs**
 
@@ -518,7 +518,7 @@ From the Trivy scan output, pick 2-3 CVEs listed as HIGH or CRITICAL and researc
 4. Check if it's actively exploited in the wild at [https://www.cisa.gov/known-exploited-vulnerabilities-catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
 
 📸 **Screenshot:** Trivy scan results
-> <img src="screenshots/13-trivy-scan-medium.png" width="600"/>
+> <img src="screenshots/13-trivy-scan-medium.png" width="700"/>
 
 ---
 
@@ -532,7 +532,7 @@ In the ECR Console → repository → **Edit** → enabled **"Scan on push."**
 (Or via CLI when creating the repo: `--image-scanning-configuration scanOnPush=true`)
 
 📸 **Screenshot:** ECR scan on push settings
-> <img src="screenshots/14-scan-on-push.png" width="600"/>
+> <img src="screenshots/14-scan-on-push.png" width="700"/>
 
 **Step 2 — Push the image to trigger the scan**
 
@@ -560,7 +560,7 @@ aws ecr describe-image-scan-findings --repository-name myapp --image-id imageTag
 ```
 
 📸 **Screenshot:** ECR scan results
-> <img src="screenshots/14-ecr-scan.png" width="600"/>
+> <img src="screenshots/14-ecr-scan.png" width="700"/>
 
 Also reviewed the findings visually in the ECR Console under the image's **"Vulnerabilities"** tab.
 
@@ -576,7 +576,7 @@ Also reviewed the findings visually in the ECR Console under the image's **"Vuln
 Both tools flagged a largely overlapping set of issues, which gave confidence in the results — using two independent scanners is a good practice rather than relying on just one.
 
 📸 **Screenshot:** ECR scan results from aws console
-> <img src="screenshots/14-ecr-scan-aws.png" width="600"/>
+> <img src="screenshots/14-ecr-scan-aws.png" width="700"/>
 
 ---
 
@@ -617,7 +617,7 @@ docker build -t myapp:v1 .
 On the second build you'll see `CACHED` next to layers that didn't change — Docker skipped re-running them, making the build faster.
 
 📸 **Screenshot:** Optimize Dockerfile using layer caching
-> <img src="screenshots/15-layer-cache.png" width="600"/>
+> <img src="screenshots/15-layer-cache.png" width="700"/>
 
 **2. Use a minimal base image**
 
@@ -683,7 +683,7 @@ docker images nginx
 ```
  
 📸 **Screenshot:** Image size comparison (`docker images` output)
-> <img src="screenshots/15-image-size.png" width="600"/>
+> <img src="screenshots/15-image-size.png" width="700"/>
  
 ---
 
