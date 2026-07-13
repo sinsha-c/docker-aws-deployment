@@ -687,13 +687,19 @@ docker images nginx
  
 ---
 
-## ✅ Key Takeaways
+## Challenges I Faced
 
-- Docker simplifies packaging and running applications consistently across environments.
-- Docker Swarm provides simple, built-in orchestration for scaling and rolling updates.
-- Persistent storage strategy matters — choose named volumes for production, bind mounts for local dev.
-- Custom bridge networks make container-to-container communication simple via DNS name resolution.
-- Security isn't optional — scanning images with both Trivy and ECR, and following best practices like non-root users, minimal base images, and multi-stage builds, are essential before production deployment.
+- **Understanding Docker Networking:** Learning the differences between bridge and host networking, and how containers communicate using custom bridge networks.
+
+- **Managing Persistent Storage:** Realizing that container data is ephemeral and understanding when to use named volumes versus bind mounts.
+
+- **Working with Amazon ECR:** Configuring AWS CLI authentication, tagging images correctly, and managing IAM permissions for pushing images.
+
+- **Learning Docker Swarm:** Shifting from managing individual containers to services, replicas, and rolling updates for high availability.
+
+- **Improving Security:** Identifying vulnerabilities with Trivy and Amazon ECR scanning, and applying best practices like using non-root users and minimal base images.
+
+- **Optimizing Docker Images:** Leveraging layer caching and lightweight images to improve build performance and reduce image size.
 
 ---
 
